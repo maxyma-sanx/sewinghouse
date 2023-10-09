@@ -16,7 +16,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="flex flex-col min-h-full">
+        <div className="flex min-h-full flex-col">
           <Header />
           {children}
           <Footer />

@@ -1,8 +1,12 @@
 {
   "printWidth": 120,
   "bracketSpacing": true,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "(?=./globals.css)", "(components)", "(hooks)"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^[./]", "(components)", "(hooks)"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": ["prettier-plugin-tailwindcss", "@trivago/prettier-plugin-sort-imports"]
+  "singleAttributePerLine": true,
+  "plugins": [
+    "@trivago/prettier-plugin-sort-imports",
+    "prettier-plugin-tailwindcss"
+  ]
 }
