@@ -1,6 +1,6 @@
 "use client";
 
-import { Burger } from "..";
+import { Burger } from "../shared";
 
 interface MobileNavigationProps {
   handleBurgerClick: () => void;

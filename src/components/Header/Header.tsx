@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { Burger, Logo, MobileNavigation } from "..";
+import { Burger, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon } from "..";
 
 import { MOBILE } from "@/constants";
 
@@ -24,12 +24,21 @@ const Header = () => {
 
   return (
     <header className="px-4 py-2">
-      <nav className="flex items-center gap-4">
-        <Burger
-          isOpen={isMobile}
-          handleBurgerClick={handleBurgerClick}
-        />
-        <Logo />
+      <nav className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Burger
+            isOpen={isMobile}
+            handleBurgerClick={handleBurgerClick}
+          />
+          <div>
+            <Logo />
+          </div>
+        </div>
+        <div className="flex items-center gap-4">
+          <PhoneIcon />
+          <FavoriteIcon />
+          <CartIcon />
+        </div>
       </nav>
       <MobileNavigation
         isOpen={isMobile}

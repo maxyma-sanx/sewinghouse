@@ -1,3 +1,5 @@
 export * from "./Logo";
-export * from "./MobileNavigation";
 export * from "./Burger";
+export * from "./PhoneIcon";
+export * from "./FavoriteIcon";
+export * from "./CartIcon";
