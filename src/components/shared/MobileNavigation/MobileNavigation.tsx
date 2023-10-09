@@ -10,8 +10,35 @@ interface MobileNavigationProps {
 const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, isOpen }) => {
   return (
     <>
-      <div className="absolute bottom-0 left-0 right-0 top-0 bg-black opacity-50"></div>
-      <div className="min-w-2/3 absolute left-0 top-0 h-full bg-white p-4">
+      <div
+        onClick={handleBurgerClick}
+        className={`
+          absolute 
+          bottom-0 
+          left-0 
+          right-0 
+          top-0 
+          ${!isOpen ? "-translate-x-full" : "translate-x-0"}
+          bg-black
+          opacity-50
+          transition
+          ${!isOpen ? "delay-500" : "delay-0"}
+          duration-0
+          `}
+      ></div>
+      <div
+        className={`
+          min-w-2/3 
+          absolute 
+          left-0 
+          top-0 
+          h-full 
+          transition
+          duration-500
+          ${!isOpen ? "-translate-x-full" : "translate-x-0"}
+          bg-white
+          p-4`}
+      >
         <Burger
           isOpen={isOpen}
           handleBurgerClick={handleBurgerClick}

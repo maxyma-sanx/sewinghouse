@@ -1,15 +1,26 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Burger, Logo, MobileNavigation } from "..";
 
+import { MOBILE } from "@/constants";
+
+import { useMediaQuery } from "@/hooks";
+
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const matches = useMediaQuery(`(min-width: ${MOBILE}px)`);
 
   const handleBurgerClick = useMemo(() => {
     return () => setIsMobile((prev) => !prev);
   }, []);
+
+  useEffect(() => {
+    if (matches) {
+      setIsMobile(false);
+    }
+  }, [matches]);
 
   return (
     <header className="px-4 py-2">
@@ -20,12 +31,10 @@ const Header = () => {
         />
         <Logo />
       </nav>
-      {isMobile && (
-        <MobileNavigation
-          isOpen={isMobile}
-          handleBurgerClick={handleBurgerClick}
-        />
-      )}
+      <MobileNavigation
+        isOpen={isMobile}
+        handleBurgerClick={handleBurgerClick}
+      />
     </header>
   );
 };
