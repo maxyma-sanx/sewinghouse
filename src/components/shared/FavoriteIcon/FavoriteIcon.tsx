@@ -2,7 +2,7 @@
 
 import { AiOutlineHeart } from "react-icons/ai";
 
-import { addItem } from "@/redux/favorite/favoriteSlice";
+import { toggleItem } from "@/redux/favorite/favoriteSlice";
 
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -16,14 +16,14 @@ const FavoriteIcon = () => {
       <button
         onClick={() => {
           const newProduct = {
-            id: favorites.length + 1,
+            id: 1,
             name: "Dress",
             price: 100,
             image: "https://picsum.photos/200/300",
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
           };
 
-          dispatch(addItem(newProduct));
+          dispatch(toggleItem(newProduct));
         }}
       >
         <AiOutlineHeart size={28} />
