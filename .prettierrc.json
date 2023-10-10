@@ -1,7 +1,16 @@
 {
   "printWidth": 120,
   "bracketSpacing": true,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^[./]", "(constants)", "(hooks)", "(components)"],
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^[./]",
+    "(redux/store)",
+    "(redux/favorite)",
+    "(types)",
+    "(constants)",
+    "(hooks)",
+    "(components)"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
   "singleAttributePerLine": true,

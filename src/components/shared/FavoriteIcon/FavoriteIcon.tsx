@@ -1,18 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { AiOutlineHeart } from "react-icons/ai";
 
-const FavoriteIcon = () => {
-  const [count, setCount] = useState(0);
+import { addItem } from "@/redux/favorite/favoriteSlice";
 
-  const handleFavoriteClick = useMemo(() => {
-    return () => setCount((prev) => prev + 1);
-  }, []);
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+
+const FavoriteIcon = () => {
+  const { items: favorites } = useAppSelector((state) => state.favorite);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="relative">
-      <button onClick={handleFavoriteClick}>
+      <button
+        onClick={() => {
+          const newProduct = {
+            id: favorites.length + 1,
+            name: "Dress",
+            price: 100,
+            image: "https://picsum.photos/200/300",
+            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+          };
+
+          dispatch(addItem(newProduct));
+        }}
+      >
         <AiOutlineHeart size={28} />
         <span
           className={`
@@ -26,12 +39,12 @@ const FavoriteIcon = () => {
             justify-center 
             rounded-full 
             transition
-            ${count > 0 ? "bg-red-500" : "bg-black"}
+            ${favorites.length > 0 ? "bg-red-500" : "bg-black"}
             text-xs
             text-white   
           `}
         >
-          {count}
+          {favorites.length}
         </span>
       </button>
     </div>
