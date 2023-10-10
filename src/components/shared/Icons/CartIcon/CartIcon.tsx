@@ -5,12 +5,9 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { selectCartItems } from "@/redux/cart/selector";
 import { addItem } from "@/redux/cart/slice";
 
-import { MEDIA_QUERIES } from "@/constants";
-import { ICONS } from "@/constants/sizes";
+import { ICONS, MEDIA_QUERIES } from "@/constants";
 
-import { useMediaQuery } from "@/hooks";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch, useAppSelector, useMediaQuery } from "@/hooks";
 
 interface CartIconProps {
   children?: React.ReactNode;

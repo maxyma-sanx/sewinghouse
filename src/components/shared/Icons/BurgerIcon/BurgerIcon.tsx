@@ -3,17 +3,16 @@
 import { AiOutlineClose } from "react-icons/ai";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 
-import { MEDIA_QUERIES } from "@/constants";
-import { ICONS } from "@/constants/sizes";
+import { ICONS, MEDIA_QUERIES } from "@/constants";
 
 import { useMediaQuery } from "@/hooks";
 
-interface BurgerProps {
+interface BurgerIconProps {
   handleBurgerClick: () => void;
   isOpen: boolean;
 }
 
-const Burger: React.FC<BurgerProps> = ({ handleBurgerClick, isOpen }) => {
+const BurgerIcon: React.FC<BurgerIconProps> = ({ handleBurgerClick, isOpen }) => {
   const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
   return (
@@ -33,4 +32,4 @@ const Burger: React.FC<BurgerProps> = ({ handleBurgerClick, isOpen }) => {
   );
 };
 
-export default Burger;
+export default BurgerIcon;

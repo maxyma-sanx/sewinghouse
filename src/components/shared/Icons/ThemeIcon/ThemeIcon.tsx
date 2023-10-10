@@ -3,8 +3,7 @@
 import { useTheme } from "next-themes";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
-import { MEDIA_QUERIES } from "@/constants";
-import { ICONS } from "@/constants/sizes";
+import { ICONS, MEDIA_QUERIES } from "@/constants";
 
 import { useMediaQuery } from "@/hooks";
 

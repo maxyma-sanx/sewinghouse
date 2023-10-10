@@ -5,12 +5,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { selectFavoriteItems } from "@/redux/favorite/selector";
 import { toggleItem } from "@/redux/favorite/slice";
 
-import { MEDIA_QUERIES } from "@/constants";
-import { ICONS } from "@/constants/sizes";
+import { ICONS, MEDIA_QUERIES } from "@/constants";
 
-import { useMediaQuery } from "@/hooks";
-import { useAppDispatch } from "@/hooks/useAppDispatch";
-import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch, useAppSelector, useMediaQuery } from "@/hooks";
 
 interface FavoriteIconProps {
   children?: React.ReactNode;

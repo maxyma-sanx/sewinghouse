@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { Burger, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon, ThemeIcon } from "..";
+import { BurgerIcon, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon, ThemeIcon } from "..";
 
 import { MEDIA_QUERIES } from "@/constants";
 
@@ -26,7 +26,7 @@ const Header = () => {
     <header className="px-4 py-2">
       <nav className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Burger
+          <BurgerIcon
             isOpen={isMobile}
             handleBurgerClick={handleBurgerClick}
           />

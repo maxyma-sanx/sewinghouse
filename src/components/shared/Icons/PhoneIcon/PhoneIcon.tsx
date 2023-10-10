@@ -4,8 +4,7 @@ import { useMemo, useState } from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 import { MdKeyboardArrowDown } from "react-icons/md";
 
-import { MEDIA_QUERIES } from "@/constants";
-import { ICONS } from "@/constants/sizes";
+import { ICONS, MEDIA_QUERIES } from "@/constants";
 
 import { useMediaQuery } from "@/hooks";
 
