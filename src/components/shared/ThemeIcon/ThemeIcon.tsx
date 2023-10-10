@@ -8,7 +8,11 @@ import { ICONS } from "@/constants/sizes";
 
 import { useMediaQuery } from "@/hooks";
 
-const ThemeIcon = () => {
+interface ThemeIconProps {
+  children?: React.ReactNode;
+}
+
+const ThemeIcon: React.FC<ThemeIconProps> = ({ children }) => {
   const { theme, setTheme } = useTheme();
   const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
@@ -30,6 +34,7 @@ const ThemeIcon = () => {
           <MdOutlineDarkMode size={`${matches ? ICONS.default : ICONS.small}`} />
         )}
       </button>
+      {children}
     </div>
   );
 };

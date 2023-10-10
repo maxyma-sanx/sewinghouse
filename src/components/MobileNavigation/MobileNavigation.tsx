@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { AiOutlineHome } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
 
-import { Burger, CartIcon, FavoriteIcon } from "../shared";
+import { Burger, CartIcon, FavoriteIcon, PhoneIcon } from "../shared";
 
 import { MEDIA_QUERIES } from "@/constants";
 import { ICONS } from "@/constants/sizes";
@@ -43,40 +45,100 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, 
           top-0 
           h-full 
           w-2/3 
-          shadow-2xl 
-          shadow-black
+          ${isOpen && "shadow-2xl shadow-black"}
           transition
           duration-500
           ${!isOpen ? "-translate-x-full" : "translate-x-0"}
+          flex
+          flex-col
+          justify-between
           bg-white
           dark:bg-zinc-900
         `}
       >
-        <div className="border-b-2 px-4 pb-3 pt-5">
-          <Burger
-            isOpen={isOpen}
-            handleBurgerClick={handleBurgerClick}
-          />
+        <div>
+          <div className="border-b-2 px-4 pb-3 pt-5">
+            <Burger
+              isOpen={isOpen}
+              handleBurgerClick={handleBurgerClick}
+            />
+          </div>
+          <ul className="flex flex-col">
+            <li>
+              <div className="border-b-[1px] p-4">
+                <button className="flex items-center gap-4">
+                  <AiOutlineHome size={`${matches ? ICONS.default : ICONS.small}`} />
+                  <p className={`${matches ? "text-base" : "text-sm"}`}>Головна</p>
+                </button>
+              </div>
+            </li>
+            <li>
+              <div className="border-b-[1px] p-4">
+                <button className="flex items-center gap-4">
+                  <BiCategory size={`${matches ? ICONS.default : ICONS.small}`} />
+                  <p className={`${matches ? "text-base" : "text-sm"}`}>Категорії</p>
+                </button>
+              </div>
+            </li>
+            <li>
+              <div className="border-b-[1px] p-4">
+                <FavoriteIcon nav>
+                  <p className={`${matches ? "text-base" : "text-sm"}`}>Відкладені</p>
+                </FavoriteIcon>
+              </div>
+            </li>
+            <li>
+              <div className="border-b-[1px] p-4">
+                <CartIcon nav>
+                  <p className={`${matches ? "text-base" : "text-sm"}`}>Кошик</p>
+                </CartIcon>
+              </div>
+            </li>
+            <li>
+              <div className="border-b-[1px] p-4">
+                <PhoneIcon nav>
+                  <p className={`${matches ? "text-base" : "text-sm"}`}>+380-50-57-494-69</p>
+                </PhoneIcon>
+              </div>
+            </li>
+          </ul>
         </div>
-        <ul className="flex flex-col">
+        <ul className="flex justify-center gap-4 py-4">
           <li>
-            <div className="flex border-b-[1px]">
-              <button className="flex items-center gap-4 p-4">
-                <AiOutlineHome size={`${matches ? ICONS.default : ICONS.small}`} />
-                Головна
-              </button>
-            </div>
+            <Image
+              className="rounded-md"
+              src="/telegram.svg"
+              alt="Telegram Logo"
+              width={50}
+              height={24}
+            />
           </li>
           <li>
-            <div className="flex border-b-[1px] p-4">
-              <FavoriteIcon nav>Відкладені</FavoriteIcon>
-            </div>
+            <Image
+              className="rounded-md"
+              src="/instagram.svg"
+              alt="Instagram Logo"
+              width={50}
+              height={24}
+            />
           </li>
           <li>
-            <div className="flex items-center gap-4 border-b-[1px] p-4">
-              <CartIcon />
-              <p>Кошик</p>
-            </div>
+            <Image
+              className="rounded-md"
+              src="/viber.svg"
+              alt="Viber Logo"
+              width={50}
+              height={24}
+            />
+          </li>
+          <li>
+            <Image
+              className="rounded-md"
+              src="/tiktok.svg"
+              alt="Tiktok Logo"
+              width={50}
+              height={24}
+            />
           </li>
         </ul>
       </div>

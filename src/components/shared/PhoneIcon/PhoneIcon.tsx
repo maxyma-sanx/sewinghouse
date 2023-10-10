@@ -8,7 +8,12 @@ import { ICONS } from "@/constants/sizes";
 
 import { useMediaQuery } from "@/hooks";
 
-const PhoneIcon = () => {
+interface PhoneIconProps {
+  children?: React.ReactNode;
+  nav?: boolean;
+}
+
+const PhoneIcon: React.FC<PhoneIconProps> = ({ children, nav }) => {
   const [isOpen, setIsOpen] = useState(false);
   const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
@@ -18,19 +23,22 @@ const PhoneIcon = () => {
 
   return (
     <div className="relative flex">
-      <button onClick={handlePhoneClick}>
+      <button
+        onClick={handlePhoneClick}
+        className="flex items-center gap-4"
+      >
         <AiOutlinePhone
           className="scale-x-[-1]"
           size={`${matches ? ICONS.default : ICONS.small}`}
         />
-        <span
-          className={`
+        {!nav && (
+          <span
+            className={`
             absolute 
-            -right-1 
-            -top-1 
+            ${nav ? "left-4" : "-right-1"}
+            ${matches ? "-top-1" : "-top-[2px]"}
             flex 
-            h-4 
-            w-4 
+            ${matches ? "h-4 w-4" : "h-3 w-3"}
             items-center 
             justify-center 
             rounded-full 
@@ -38,12 +46,14 @@ const PhoneIcon = () => {
             ${isOpen ? "bg-red-500" : "bg-black"}
             ${isOpen ? "dark:bg-red-500" : "dark:bg-white"}
             ${isOpen ? "dark:text-white" : "dark:text-black"}
-            text-xs
+            ${matches ? "text-xs" : "text-[10px]"}
             text-white   
           `}
-        >
-          v
-        </span>
+          >
+            v
+          </span>
+        )}
+        {children}
       </button>
     </div>
   );

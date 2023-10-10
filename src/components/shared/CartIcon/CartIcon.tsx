@@ -12,7 +12,12 @@ import { useMediaQuery } from "@/hooks";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 
-const CartIcon = () => {
+interface CartIconProps {
+  children?: React.ReactNode;
+  nav?: boolean;
+}
+
+const CartIcon: React.FC<CartIconProps> = ({ children, nav }) => {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
   const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
@@ -31,16 +36,16 @@ const CartIcon = () => {
 
           dispatch(addItem(newProduct));
         }}
+        className={`flex items-center gap-4 ${matches ? "text-base" : "text-sm"}}`}
       >
         <AiOutlineShoppingCart size={`${matches ? ICONS.default : ICONS.small}`} />
         <span
           className={`
             absolute 
-            -right-1 
-            -top-1 
+            ${nav ? "left-4" : "-right-1"}
+            ${matches ? "-top-1" : "-top-[2px]"}
             flex 
-            h-4 
-            w-4 
+            ${matches ? "h-4 w-4" : "h-3 w-3"}
             items-center 
             justify-center 
             rounded-full 
@@ -48,12 +53,13 @@ const CartIcon = () => {
             ${cartItems.length > 0 ? "bg-red-500" : "bg-black"}
             ${cartItems.length > 0 ? "dark:bg-red-500" : "dark:bg-white"}
             ${cartItems.length > 0 ? "dark:text-white" : "dark:text-black"}
-            text-xs
+            ${matches ? "text-xs" : "text-[10px]"}
             text-white 
           `}
         >
           {cartItems.length}
         </span>
+        {children}
       </button>
     </div>
   );
