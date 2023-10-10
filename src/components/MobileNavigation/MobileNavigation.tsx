@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 import { AiOutlineHome } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
+import { MdKeyboardArrowDown, MdKeyboardArrowRight, MdKeyboardArrowUp } from "react-icons/md";
 
 import { Burger, CartIcon, FavoriteIcon, PhoneIcon } from "../shared";
 
@@ -17,6 +20,7 @@ interface MobileNavigationProps {
 }
 
 const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, isOpen }) => {
+  const [subMenu, setSubMenu] = useState(false);
   const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
   return (
@@ -57,7 +61,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, 
         `}
       >
         <div>
-          <div className="border-b-2 px-4 pb-3 pt-5">
+          <div className="border-b-2 px-4 pb-3 pt-5 dark:border-b-gray-500">
             <Burger
               isOpen={isOpen}
               handleBurgerClick={handleBurgerClick}
@@ -65,37 +69,63 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, 
           </div>
           <ul className="flex flex-col">
             <li>
-              <div className="border-b-[1px] p-4">
-                <button className="flex items-center gap-4">
+              <div className="border-b-[1px] p-4 dark:border-b-gray-500">
+                <button className="flex items-center gap-4 transition hover:opacity-70">
                   <AiOutlineHome size={`${matches ? ICONS.default : ICONS.small}`} />
                   <p className={`${matches ? "text-base" : "text-sm"}`}>Головна</p>
                 </button>
               </div>
             </li>
             <li>
-              <div className="border-b-[1px] p-4">
-                <button className="flex items-center gap-4">
-                  <BiCategory size={`${matches ? ICONS.default : ICONS.small}`} />
-                  <p className={`${matches ? "text-base" : "text-sm"}`}>Категорії</p>
-                </button>
+              <div className="border-b-[1px] p-4 dark:border-b-gray-500">
+                <div className="flex justify-between">
+                  <button className="flex items-center gap-4 transition hover:opacity-70">
+                    <BiCategory size={`${matches ? ICONS.default : ICONS.small}`} />
+                    <p className={`${matches ? "text-base" : "text-sm"}`}>Категорії</p>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSubMenu((prev) => !prev);
+                    }}
+                    className="transition hover:opacity-80"
+                  >
+                    {!subMenu ? <MdKeyboardArrowDown size={28} /> : <MdKeyboardArrowUp size={28} />}
+                  </button>
+                </div>
+                {subMenu && (
+                  <ul className="px-5 pt-2">
+                    <li className="flex items-center gap-1">
+                      <MdKeyboardArrowRight />
+                      <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 1</p>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <MdKeyboardArrowRight />
+                      <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 2</p>
+                    </li>
+                    <li className="flex items-center gap-1">
+                      <MdKeyboardArrowRight />
+                      <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 3</p>
+                    </li>
+                  </ul>
+                )}
               </div>
             </li>
             <li>
-              <div className="border-b-[1px] p-4">
+              <div className="border-b-[1px] p-4 dark:border-b-gray-500">
                 <FavoriteIcon nav>
                   <p className={`${matches ? "text-base" : "text-sm"}`}>Відкладені</p>
                 </FavoriteIcon>
               </div>
             </li>
             <li>
-              <div className="border-b-[1px] p-4">
+              <div className="border-b-[1px] p-4 dark:border-b-gray-500">
                 <CartIcon nav>
                   <p className={`${matches ? "text-base" : "text-sm"}`}>Кошик</p>
                 </CartIcon>
               </div>
             </li>
             <li>
-              <div className="border-b-[1px] p-4">
+              <div className="border-b-[1px] p-4 dark:border-b-gray-500">
                 <PhoneIcon nav>
                   <p className={`${matches ? "text-base" : "text-sm"}`}>+380-50-57-494-69</p>
                 </PhoneIcon>
@@ -103,42 +133,70 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, 
             </li>
           </ul>
         </div>
-        <ul className="flex justify-center gap-4 py-4">
+        <ul className="flex justify-center gap-4 border-t-2 p-4 dark:border-t-gray-500">
           <li>
-            <Image
-              className="rounded-md"
-              src="/telegram.svg"
-              alt="Telegram Logo"
-              width={50}
-              height={24}
-            />
+            <a
+              href="https://t.me/yulia_koralkova"
+              className="transition hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="rounded-md"
+                src="/telegram.svg"
+                alt="Telegram Logo"
+                width={50}
+                height={24}
+              />
+            </a>
           </li>
           <li>
-            <Image
-              className="rounded-md"
-              src="/instagram.svg"
-              alt="Instagram Logo"
-              width={50}
-              height={24}
-            />
+            <a
+              href="https://www.instagram.com/yulia_koralkova/"
+              className="transition hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="rounded-md"
+                src="/instagram.svg"
+                alt="Instagram Logo"
+                width={50}
+                height={24}
+              />
+            </a>
           </li>
           <li>
-            <Image
-              className="rounded-md"
-              src="/viber.svg"
-              alt="Viber Logo"
-              width={50}
-              height={24}
-            />
+            <a
+              href="viber://chat?number=380676952127"
+              className="transition hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="rounded-md transition hover:opacity-80"
+                src="/viber.svg"
+                alt="Viber Logo"
+                width={50}
+                height={24}
+              />
+            </a>
           </li>
           <li>
-            <Image
-              className="rounded-md"
-              src="/tiktok.svg"
-              alt="Tiktok Logo"
-              width={50}
-              height={24}
-            />
+            <a
+              href="https://www.tiktok.com/@jkoralkova/"
+              className="transition hover:opacity-80"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                className="rounded-md"
+                src="/tiktok.svg"
+                alt="Tiktok Logo"
+                width={50}
+                height={24}
+              />
+            </a>
           </li>
         </ul>
       </div>

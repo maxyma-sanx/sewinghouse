@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AiOutlinePhone } from "react-icons/ai";
+import { MdKeyboardArrowDown } from "react-icons/md";
 
 import { MEDIA_QUERIES } from "@/constants";
 import { ICONS } from "@/constants/sizes";
@@ -25,7 +26,7 @@ const PhoneIcon: React.FC<PhoneIconProps> = ({ children, nav }) => {
     <div className="relative flex">
       <button
         onClick={handlePhoneClick}
-        className="flex items-center gap-4"
+        className="flex items-center gap-4 transition hover:opacity-80"
       >
         <AiOutlinePhone
           className="scale-x-[-1]"
@@ -50,7 +51,7 @@ const PhoneIcon: React.FC<PhoneIconProps> = ({ children, nav }) => {
             text-white   
           `}
           >
-            v
+            <MdKeyboardArrowDown size={12} />
           </span>
         )}
         {children}

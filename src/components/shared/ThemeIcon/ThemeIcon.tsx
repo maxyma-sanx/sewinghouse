@@ -19,7 +19,7 @@ const ThemeIcon: React.FC<ThemeIconProps> = ({ children }) => {
   return (
     <div className="flex">
       <button
-        className="relative"
+        className="relative transition hover:opacity-80"
         onClick={() => {
           if (theme === "light") {
             setTheme("dark");

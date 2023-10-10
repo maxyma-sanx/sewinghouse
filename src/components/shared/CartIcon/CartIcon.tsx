@@ -36,7 +36,7 @@ const CartIcon: React.FC<CartIconProps> = ({ children, nav }) => {
 
           dispatch(addItem(newProduct));
         }}
-        className={`flex items-center gap-4 ${matches ? "text-base" : "text-sm"}}`}
+        className={`flex items-center gap-4 transition hover:opacity-80 ${matches ? "text-base" : "text-sm"}}`}
       >
         <AiOutlineShoppingCart size={`${matches ? ICONS.default : ICONS.small}`} />
         <span

@@ -18,11 +18,14 @@ const Burger: React.FC<BurgerProps> = ({ handleBurgerClick, isOpen }) => {
 
   return (
     <button
-      className="sm:hidden"
+      className="transition hover:opacity-80 sm:hidden"
       onClick={handleBurgerClick}
     >
       {isOpen ? (
-        <AiOutlineClose size={`${matches ? ICONS.default : ICONS.small}`} />
+        <AiOutlineClose
+          className="transition duration-700 hover:rotate-180"
+          size={`${matches ? ICONS.default : ICONS.small}`}
+        />
       ) : (
         <HiOutlineMenuAlt2 size={`${matches ? ICONS.default : ICONS.small}`} />
       )}

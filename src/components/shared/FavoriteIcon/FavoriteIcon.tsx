@@ -36,7 +36,7 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({ children, nav }) => {
 
           dispatch(toggleItem(newProduct));
         }}
-        className="flex items-center gap-4"
+        className="flex items-center gap-4 transition hover:opacity-80"
       >
         <AiOutlineHeart size={`${matches ? ICONS.default : ICONS.small}`} />
         <span
