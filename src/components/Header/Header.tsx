@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-import { Burger, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon } from "..";
+import { Burger, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon, ThemeIcon } from "..";
 
 import { MOBILE } from "@/constants";
 
@@ -35,6 +35,7 @@ const Header = () => {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          <ThemeIcon />
           <PhoneIcon />
           <FavoriteIcon />
           <CartIcon />

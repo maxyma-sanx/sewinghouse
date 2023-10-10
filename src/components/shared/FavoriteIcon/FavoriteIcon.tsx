@@ -2,13 +2,14 @@
 
 import { AiOutlineHeart } from "react-icons/ai";
 
-import { toggleItem } from "@/redux/favorite/favoriteSlice";
+import { selectFavoriteItems } from "@/redux/favorite/selector";
+import { toggleItem } from "@/redux/favorite/slice";
 
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 
 const FavoriteIcon = () => {
-  const { items: favorites } = useAppSelector((state) => state.favorite);
+  const favorite = useAppSelector(selectFavoriteItems);
   const dispatch = useAppDispatch();
 
   return (
@@ -39,12 +40,14 @@ const FavoriteIcon = () => {
             justify-center 
             rounded-full 
             transition
-            ${favorites.length > 0 ? "bg-red-500" : "bg-black"}
+            ${favorite.length > 0 ? "bg-red-500" : "bg-black"}
+            ${favorite.length > 0 ? "dark:bg-red-500" : "dark:bg-white"}
+            ${favorite.length > 0 ? "dark:text-white" : "dark:text-black"}
             text-xs
             text-white   
           `}
         >
-          {favorites.length}
+          {favorite.length}
         </span>
       </button>
     </div>

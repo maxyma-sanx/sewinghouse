@@ -1,18 +1,32 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 
-const CartIcon = () => {
-  const [count, setCount] = useState(0);
+import { selectCartItems } from "@/redux/cart/selector";
+import { addItem } from "@/redux/cart/slice";
 
-  const handleCartClick = useMemo(() => {
-    return () => setCount((prev) => prev + 1);
-  }, []);
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { useAppSelector } from "@/hooks/useAppSelector";
+
+const CartIcon = () => {
+  const cartItems = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
 
   return (
     <div className="relative">
-      <button onClick={handleCartClick}>
+      <button
+        onClick={() => {
+          const newProduct = {
+            id: cartItems.length,
+            name: "Dress",
+            price: 100,
+            image: "https://picsum.photos/200/300",
+            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+          };
+
+          dispatch(addItem(newProduct));
+        }}
+      >
         <AiOutlineShoppingCart size={28} />
         <span
           className={`
@@ -26,12 +40,14 @@ const CartIcon = () => {
             justify-center 
             rounded-full 
             transition
-            ${count > 0 ? "bg-red-500" : "bg-black"}
+            ${cartItems.length > 0 ? "bg-red-500" : "bg-black"}
+            ${cartItems.length > 0 ? "dark:bg-red-500" : "dark:bg-white"}
+            ${cartItems.length > 0 ? "dark:text-white" : "dark:text-black"}
             text-xs
-            text-white  
+            text-white 
           `}
         >
-          {count}
+          {cartItems.length}
         </span>
       </button>
     </div>

@@ -30,6 +30,8 @@ const PhoneIcon = () => {
             rounded-full 
             transition
             ${isOpen ? "bg-red-500" : "bg-black"}
+            ${isOpen ? "dark:bg-red-500" : "dark:bg-white"}
+            ${isOpen ? "dark:text-white" : "dark:text-black"}
             text-xs
             text-white   
           `}

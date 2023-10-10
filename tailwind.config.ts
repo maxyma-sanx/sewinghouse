@@ -11,6 +11,7 @@ const config: Config = {
       xl: "1280px",
     },
   },
+  darkMode: "class",
   plugins: [],
 };
 export default config;
