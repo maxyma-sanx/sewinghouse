@@ -4,13 +4,13 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Burger, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon, ThemeIcon } from "..";
 
-import { MOBILE } from "@/constants";
+import { MEDIA_QUERIES } from "@/constants";
 
 import { useMediaQuery } from "@/hooks";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const matches = useMediaQuery(`(min-width: ${MOBILE}px)`);
+  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileDefault}px)`);
 
   const handleBurgerClick = useMemo(() => {
     return () => setIsMobile((prev) => !prev);

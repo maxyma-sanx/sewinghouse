@@ -5,15 +5,20 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { selectCartItems } from "@/redux/cart/selector";
 import { addItem } from "@/redux/cart/slice";
 
+import { MEDIA_QUERIES } from "@/constants";
+import { ICONS } from "@/constants/sizes";
+
+import { useMediaQuery } from "@/hooks";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 
 const CartIcon = () => {
   const cartItems = useAppSelector(selectCartItems);
   const dispatch = useAppDispatch();
+  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
   return (
-    <div className="relative">
+    <div className="relative flex">
       <button
         onClick={() => {
           const newProduct = {
@@ -27,7 +32,7 @@ const CartIcon = () => {
           dispatch(addItem(newProduct));
         }}
       >
-        <AiOutlineShoppingCart size={28} />
+        <AiOutlineShoppingCart size={`${matches ? ICONS.default : ICONS.small}`} />
         <span
           className={`
             absolute 

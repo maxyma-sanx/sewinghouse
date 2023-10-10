@@ -3,19 +3,25 @@
 import { useMemo, useState } from "react";
 import { AiOutlinePhone } from "react-icons/ai";
 
+import { MEDIA_QUERIES } from "@/constants";
+import { ICONS } from "@/constants/sizes";
+
+import { useMediaQuery } from "@/hooks";
+
 const PhoneIcon = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
 
   const handlePhoneClick = useMemo(() => {
     return () => setIsOpen((prev) => !prev);
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative flex">
       <button onClick={handlePhoneClick}>
         <AiOutlinePhone
           className="scale-x-[-1]"
-          size={28}
+          size={`${matches ? ICONS.default : ICONS.small}`}
         />
         <span
           className={`

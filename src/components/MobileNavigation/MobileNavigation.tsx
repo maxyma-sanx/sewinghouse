@@ -1,6 +1,13 @@
 "use client";
 
-import { Burger } from "../shared";
+import { AiOutlineHome } from "react-icons/ai";
+
+import { Burger, CartIcon, FavoriteIcon } from "../shared";
+
+import { MEDIA_QUERIES } from "@/constants";
+import { ICONS } from "@/constants/sizes";
+
+import { useMediaQuery } from "@/hooks";
 
 interface MobileNavigationProps {
   handleBurgerClick: () => void;
@@ -8,6 +15,8 @@ interface MobileNavigationProps {
 }
 
 const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, isOpen }) => {
+  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
+
   return (
     <>
       <div
@@ -22,30 +31,53 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({ handleBurgerClick, 
           bg-black
           opacity-50
           transition
+          dark:bg-white
           ${!isOpen ? "delay-500" : "delay-0"}
           duration-0
-          `}
+        `}
       ></div>
       <div
         className={`
-          min-w-2/3 
           absolute 
-          left-0 
+          left-0
           top-0 
           h-full 
+          w-2/3 
+          shadow-2xl 
+          shadow-black
           transition
           duration-500
           ${!isOpen ? "-translate-x-full" : "translate-x-0"}
           bg-white
-          p-4`}
+          dark:bg-zinc-900
+        `}
       >
-        <Burger
-          isOpen={isOpen}
-          handleBurgerClick={handleBurgerClick}
-        />
-        <ul className="flex gap-4">
-          <li>Мобільна головна</li>
-          <li>Мобільні каталог</li>
+        <div className="border-b-2 px-4 pb-3 pt-5">
+          <Burger
+            isOpen={isOpen}
+            handleBurgerClick={handleBurgerClick}
+          />
+        </div>
+        <ul className="flex flex-col">
+          <li>
+            <div className="flex border-b-[1px]">
+              <button className="flex items-center gap-4 p-4">
+                <AiOutlineHome size={`${matches ? ICONS.default : ICONS.small}`} />
+                Головна
+              </button>
+            </div>
+          </li>
+          <li>
+            <div className="flex border-b-[1px] p-4">
+              <FavoriteIcon nav>Відкладені</FavoriteIcon>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center gap-4 border-b-[1px] p-4">
+              <CartIcon />
+              <p>Кошик</p>
+            </div>
+          </li>
         </ul>
       </div>
     </>
