@@ -13,12 +13,11 @@ interface ThemeIconProps {
 
 const ThemeIcon: React.FC<ThemeIconProps> = ({ children }) => {
   const { theme, setTheme } = useTheme();
-  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
+  const matchesMobileXs = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileXs}px)`);
 
   return (
     <div className="flex">
       <button
-        className="relative transition hover:opacity-80"
         onClick={() => {
           if (theme === "light") {
             setTheme("dark");
@@ -28,9 +27,15 @@ const ThemeIcon: React.FC<ThemeIconProps> = ({ children }) => {
         }}
       >
         {theme === "light" ? (
-          <MdOutlineLightMode size={`${matches ? ICONS.default : ICONS.small}`} />
+          <MdOutlineLightMode
+            className="fill-gray-500 transition hover:fill-black dark:fill-white dark:hover:fill-gray-400"
+            size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+          />
         ) : (
-          <MdOutlineDarkMode size={`${matches ? ICONS.default : ICONS.small}`} />
+          <MdOutlineDarkMode
+            className="fill-gray-500 transition hover:fill-black dark:fill-white dark:hover:fill-gray-400"
+            size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+          />
         )}
       </button>
       {children}

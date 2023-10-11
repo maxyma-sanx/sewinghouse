@@ -1,15 +1,26 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
-const Logo = () => {
+interface LogoProps {
+  width: number;
+  height: number;
+}
+
+const Logo: React.FC<LogoProps> = ({ width, height }) => {
   return (
-    <Image
-      src="/logo.png"
-      alt="Logo"
-      width={156}
-      height={52}
-    />
+    <Link
+      href="/"
+      className="transition"
+    >
+      <Image
+        src="/logo.png"
+        alt="Logo"
+        width={width}
+        height={height}
+      />
+    </Link>
   );
 };
 

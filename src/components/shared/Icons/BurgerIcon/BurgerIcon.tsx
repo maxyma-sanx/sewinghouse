@@ -13,20 +13,23 @@ interface BurgerIconProps {
 }
 
 const BurgerIcon: React.FC<BurgerIconProps> = ({ handleBurgerClick, isOpen }) => {
-  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
+  const matchesMobileXs = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileXs}px)`);
 
   return (
     <button
-      className="transition hover:opacity-80 sm:hidden"
+      className="md:hidden"
       onClick={handleBurgerClick}
     >
       {isOpen ? (
         <AiOutlineClose
-          className="transition duration-700 hover:rotate-180"
-          size={`${matches ? ICONS.default : ICONS.small}`}
+          className="fill-gray-500 transition duration-700 hover:rotate-180 hover:fill-black dark:fill-white dark:hover:fill-gray-400"
+          size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
         />
       ) : (
-        <HiOutlineMenuAlt2 size={`${matches ? ICONS.default : ICONS.small}`} />
+        <HiOutlineMenuAlt2
+          className="rotate-180 stroke-gray-500 transition duration-700 hover:rotate-0 hover:stroke-black dark:stroke-white dark:hover:stroke-gray-400"
+          size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+        />
       )}
     </button>
   );

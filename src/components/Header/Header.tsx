@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { BurgerIcon, CartIcon, FavoriteIcon, Logo, MobileNavigation, PhoneIcon, ThemeIcon } from "..";
+import { HeaderCategoriesList } from "./HeaderCategoriesList";
 
 import { MEDIA_QUERIES } from "@/constants";
 
@@ -10,37 +11,63 @@ import { useMediaQuery } from "@/hooks";
 
 const Header = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileDefault}px)`);
+  const matchesMobileSm = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSm}px)`);
+  const matchesTabletXs = useMediaQuery(`(min-width: ${MEDIA_QUERIES.tabletXs}px)`);
+  const matchesTabletSm = useMediaQuery(`(min-width: ${MEDIA_QUERIES.tabletSm}px)`);
 
   const handleBurgerClick = useMemo(() => {
     return () => setIsMobile((prev) => !prev);
   }, []);
 
   useEffect(() => {
-    if (matches) {
+    if (matchesTabletXs) {
       setIsMobile(false);
     }
-  }, [matches]);
+  }, [matchesTabletXs]);
 
   return (
-    <header className="px-4 py-2">
-      <nav className="flex items-center justify-between">
-        <div className="flex items-center gap-4">
+    <header
+      className={`
+        border-b-[1px]
+        px-4 
+        ${matchesTabletSm ? "pb-2 pt-6" : "py-2"} 
+      `}
+    >
+      <div
+        className={`
+          flex
+          ${matchesTabletSm ? "items-start" : "items-center"} 
+          justify-between
+        `}
+      >
+        <div className="flex items-center gap-2">
           <BurgerIcon
             isOpen={isMobile}
             handleBurgerClick={handleBurgerClick}
           />
-          <div>
-            <Logo />
-          </div>
+          {!matchesTabletSm && (
+            <Logo
+              width={156}
+              height={52}
+            />
+          )}
+          {matchesTabletSm && <PhoneIcon>+380 67 69 52 127</PhoneIcon>}
         </div>
+        {matchesMobileSm && !matchesTabletSm && <PhoneIcon>+380 67 69 52 127</PhoneIcon>}
+        {matchesTabletSm && (
+          <Logo
+            width={356}
+            height={102}
+          />
+        )}
         <div className="flex items-center gap-4">
           <ThemeIcon />
-          <PhoneIcon />
+          {!matchesMobileSm && <PhoneIcon />}
           <FavoriteIcon />
           <CartIcon />
         </div>
-      </nav>
+      </div>
+      {matchesTabletSm && <HeaderCategoriesList />}
       <MobileNavigation
         isOpen={isMobile}
         handleBurgerClick={handleBurgerClick}

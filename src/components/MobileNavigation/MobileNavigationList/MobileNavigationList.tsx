@@ -12,7 +12,7 @@ import { CartIcon, FavoriteIcon, PhoneIcon } from "@/components";
 
 const MobileNavigationList = () => {
   const [subMenu, setSubMenu] = useState(false);
-  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
+  const matchesMobileXs = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileXs}px)`);
 
   return (
     <ul className="flex flex-col">
@@ -20,19 +20,25 @@ const MobileNavigationList = () => {
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
           <Link
             href="/"
-            className="flex items-center gap-4 transition hover:opacity-70"
+            className="group flex items-center gap-4"
           >
-            <AiOutlineHome size={`${matches ? ICONS.default : ICONS.small}`} />
-            <p className={`${matches ? "text-base" : "text-sm"}`}>Головна</p>
+            <AiOutlineHome
+              className="fill-gray-500 transition group-hover:fill-black dark:fill-white dark:group-hover:fill-gray-400"
+              size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+            />
+            <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Головна</p>
           </Link>
         </div>
       </li>
       <li>
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
           <div className="flex justify-between">
-            <button className="flex items-center gap-4 transition hover:opacity-70">
-              <BiCategory size={`${matches ? ICONS.default : ICONS.small}`} />
-              <p className={`${matches ? "text-base" : "text-sm"}`}>Категорії</p>
+            <button className="group flex items-center gap-4">
+              <BiCategory
+                className="fill-gray-500 transition group-hover:fill-black dark:fill-white dark:group-hover:fill-gray-400"
+                size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+              />
+              <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Категорії</p>
             </button>
             <button
               onClick={() => {
@@ -47,15 +53,15 @@ const MobileNavigationList = () => {
             <ul className="px-5 pt-2">
               <li className="flex items-center gap-1">
                 <MdKeyboardArrowRight />
-                <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 1</p>
+                <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Категорія 1</p>
               </li>
               <li className="flex items-center gap-1">
                 <MdKeyboardArrowRight />
-                <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 2</p>
+                <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Категорія 2</p>
               </li>
               <li className="flex items-center gap-1">
                 <MdKeyboardArrowRight />
-                <p className={`${matches ? "text-base" : "text-sm"}`}>Категорія 3</p>
+                <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Категорія 3</p>
               </li>
             </ul>
           )}
@@ -64,23 +70,23 @@ const MobileNavigationList = () => {
       <li>
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
           <FavoriteIcon nav>
-            <p className={`${matches ? "text-base" : "text-sm"}`}>Відкладені</p>
+            <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Відкладені</p>
           </FavoriteIcon>
         </div>
       </li>
       <li>
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
           <CartIcon nav>
-            <p className={`${matches ? "text-base" : "text-sm"}`}>Кошик</p>
+            <p className={`${matchesMobileXs ? "text-base" : "text-sm"}`}>Кошик</p>
           </CartIcon>
         </div>
       </li>
       <li>
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
-          <PhoneIcon nav>
+          <PhoneIcon>
             <a
               href="tel:+380505749469"
-              className={`${matches ? "text-base" : "text-sm"}`}
+              className={`${matchesMobileXs ? "text-base" : "text-sm"}`}
             >
               +380-50-57-494-69
             </a>

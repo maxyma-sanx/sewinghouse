@@ -17,7 +17,7 @@ interface FavoriteIconProps {
 const FavoriteIcon: React.FC<FavoriteIconProps> = ({ children, nav }) => {
   const favorite = useAppSelector(selectFavoriteItems);
   const dispatch = useAppDispatch();
-  const matches = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileSmall}px)`);
+  const matchesMobileXs = useMediaQuery(`(min-width: ${MEDIA_QUERIES.mobileXs}px)`);
 
   return (
     <div className="relative flex">
@@ -33,16 +33,19 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({ children, nav }) => {
 
           dispatch(toggleItem(newProduct));
         }}
-        className="flex items-center gap-4 transition hover:opacity-80"
+        className="group flex items-center gap-4"
       >
-        <AiOutlineHeart size={`${matches ? ICONS.default : ICONS.small}`} />
+        <AiOutlineHeart
+          className="fill-gray-500 transition group-hover:fill-black dark:fill-white dark:group-hover:fill-gray-400"
+          size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}
+        />
         <span
           className={`
             absolute 
             ${nav ? "left-4" : "-right-1"}
-            ${matches ? "-top-1" : "-top-[2px]"}
+            ${matchesMobileXs ? "-top-1" : "-top-[2px]"}
             flex 
-            ${matches ? "h-4 w-4" : "h-3 w-3"}
+            ${matchesMobileXs ? "h-4 w-4" : "h-3 w-3"}
             items-center 
             justify-center 
             rounded-full 
@@ -50,7 +53,7 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({ children, nav }) => {
             ${favorite.length > 0 ? "bg-red-500" : "bg-black"}
             ${favorite.length > 0 ? "dark:bg-red-500" : "dark:bg-white"}
             ${favorite.length > 0 ? "dark:text-white" : "dark:text-black"}
-            ${matches ? "text-xs" : "text-[10px]"}
+            ${matchesMobileXs ? "text-xs" : "text-[10px]"}
             text-white   
           `}
         >
