@@ -33,7 +33,12 @@ const MobileNavigationList = () => {
       <li>
         <div className="border-b-[1px] p-4 dark:border-b-gray-500">
           <div className="flex justify-between">
-            <button className="group flex items-center gap-4">
+            <button
+              className="group flex items-center gap-4"
+              onClick={() => {
+                setSubMenu((prev) => !prev);
+              }}
+            >
               <BiCategory
                 className="fill-gray-500 transition group-hover:fill-black dark:fill-white dark:group-hover:fill-gray-400"
                 size={`${matchesMobileXs ? ICONS.default : ICONS.small}`}

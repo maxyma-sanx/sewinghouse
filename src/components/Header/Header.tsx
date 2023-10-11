@@ -40,19 +40,17 @@ const Header = () => {
           justify-between
         `}
       >
-        <div className="flex items-center gap-2">
-          <BurgerIcon
-            isOpen={isMobile}
-            handleBurgerClick={handleBurgerClick}
+        <BurgerIcon
+          isOpen={isMobile}
+          handleBurgerClick={handleBurgerClick}
+        />
+        {!matchesTabletSm && (
+          <Logo
+            width={156}
+            height={52}
           />
-          {!matchesTabletSm && (
-            <Logo
-              width={156}
-              height={52}
-            />
-          )}
-          {matchesTabletSm && <PhoneIcon>+380 67 69 52 127</PhoneIcon>}
-        </div>
+        )}
+        {matchesTabletSm && <PhoneIcon>+380 67 69 52 127</PhoneIcon>}
         {matchesMobileSm && !matchesTabletSm && <PhoneIcon>+380 67 69 52 127</PhoneIcon>}
         {matchesTabletSm && (
           <Logo
